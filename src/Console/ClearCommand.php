@@ -3,7 +3,7 @@
 namespace Darkeum\Debugbar\Console;
 
 use DebugBar\DebugBar;
-use Illuminate\Console\Command;
+use Boot\System\Console\Command;
 
 class ClearCommand extends Command
 {

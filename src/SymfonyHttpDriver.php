@@ -1,20 +1,22 @@
 <?php
 
+/*
+* @name        DARKLYY PHP Debug Bar
+* @link        https://darklyy.ru/
+* @copyright   Copyright (C) 2012-2022 ООО «ПРИС»
+* @license     LICENSE.txt (see attached file)
+* @version     VERSION.txt (see attached file)
+* @author      Komarov Ivan
+*/
+
 namespace Darkeum\Debugbar;
 
 use DebugBar\HttpDriverInterface;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
 
-/**
- * HTTP driver for Symfony Request/Session
- */
 class SymfonyHttpDriver implements HttpDriverInterface
 {
-    /** @var \Illuminate\Contracts\Session\Session|\Illuminate\Session\SessionManager */
     protected $session;
 
-    /** @var \Symfony\Component\HttpFoundation\Response */
     protected $response;
 
     public function __construct($session, $response = null)
@@ -23,9 +25,6 @@ class SymfonyHttpDriver implements HttpDriverInterface
         $this->response = $response;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function setHeaders(array $headers)
     {
         if (!is_null($this->response)) {
@@ -33,9 +32,6 @@ class SymfonyHttpDriver implements HttpDriverInterface
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function isSessionStarted()
     {
         if (!$this->session->isStarted()) {
@@ -45,33 +41,21 @@ class SymfonyHttpDriver implements HttpDriverInterface
         return $this->session->isStarted();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function setSessionValue($name, $value)
     {
         $this->session->put($name, $value);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function hasSessionValue($name)
     {
         return $this->session->has($name);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getSessionValue($name)
     {
         return $this->session->get($name);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function deleteSessionValue($name)
     {
         $this->session->remove($name);

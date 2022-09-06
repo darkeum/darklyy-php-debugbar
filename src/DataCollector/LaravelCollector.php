@@ -2,26 +2,19 @@
 
 namespace Darkeum\Debugbar\DataCollector;
 
-use DebugBar\DataCollector\DataCollector;
+use Boot\App\Application;
 use DebugBar\DataCollector\Renderable;
-use Illuminate\Foundation\Application;
+use DebugBar\DataCollector\DataCollector;
 
 class LaravelCollector extends DataCollector implements Renderable
 {
-    /** @var \Illuminate\Foundation\Application $app */
     protected $app;
 
-    /**
-     * @param Application $app
-     */
     public function __construct(Application $app = null)
     {
         $this->app = $app;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function collect()
     {
         // Fallback if not injected
@@ -34,36 +27,30 @@ class LaravelCollector extends DataCollector implements Renderable
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getName()
     {
-        return 'laravel';
+        return 'darklyy';
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getWidgets()
     {
         return [
             "version" => [
                 "icon" => "github",
-                "tooltip" => "Laravel Version",
-                "map" => "laravel.version",
+                "tooltip" => "Версия Darklyy",
+                "map" => "darklyy.version",
                 "default" => ""
             ],
             "environment" => [
                 "icon" => "desktop",
-                "tooltip" => "Environment",
-                "map" => "laravel.environment",
+                "tooltip" => "Среда",
+                "map" => "darklyy.environment",
                 "default" => ""
             ],
             "locale" => [
                 "icon" => "flag",
-                "tooltip" => "Current locale",
-                "map" => "laravel.locale",
+                "tooltip" => "Текущий язык",
+                "map" => "darklyy.locale",
                 "default" => "",
             ],
         ];

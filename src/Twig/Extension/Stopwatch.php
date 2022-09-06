@@ -12,7 +12,7 @@ use Illuminate\Foundation\Application;
 class Stopwatch extends Extension
 {
     /**
-     * @var \Darkeum\Debugbar\LaravelDebugbar
+     * @var \Darkeum\Debugbar\DarklyyDebugbar
      */
     protected $debugbar;
 

@@ -5,10 +5,8 @@ namespace Darkeum\Debugbar\DataCollector;
 use Closure;
 use DebugBar\DataCollector\DataCollector;
 use DebugBar\DataCollector\Renderable;
-use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
-use Illuminate\Routing\Router;
-use Illuminate\Support\Facades\Config;
+use Boot\System\Routing\Router;
+use Boot\Support\Facades\Config;
 use InvalidArgumentException;
 
 /**
@@ -71,6 +69,7 @@ class RouteCollector extends DataCollector implements Renderable
      */
     protected function getRouteInformation($route)
     {
+        // dd($route);
         if (!is_a($route, 'Illuminate\Routing\Route')) {
             return [];
         }
@@ -149,13 +148,14 @@ class RouteCollector extends DataCollector implements Renderable
                 "icon" => "share",
                 "widget" => "PhpDebugBar.Widgets.HtmlVariableListWidget",
                 "map" => "route",
+                "tooltip" => "Маршруты",
                 "default" => "{}"
             ]
         ];
         if (Config::get('debugbar.options.route.label', true)) {
             $widgets['currentroute'] = [
                 "icon" => "share",
-                "tooltip" => "Route",
+                "tooltip" => "Текущий маршрут",
                 "map" => "route.uri",
                 "default" => ""
             ];

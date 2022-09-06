@@ -4,8 +4,8 @@ namespace Darkeum\Debugbar\Middleware;
 
 use Closure;
 use Exception;
-use Illuminate\Http\Request;
-use Darkeum\Debugbar\LaravelDebugbar;
+use Boot\System\Http\Request;
+use Darkeum\Debugbar\DarklyyDebugbar;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Throwable;
@@ -22,7 +22,7 @@ class InjectDebugbar
     /**
      * The DebugBar instance
      *
-     * @var LaravelDebugbar
+     * @var DarklyyDebugbar
      */
     protected $debugbar;
 
@@ -37,9 +37,9 @@ class InjectDebugbar
      * Create a new middleware instance.
      *
      * @param  Container $container
-     * @param  LaravelDebugbar $debugbar
+     * @param  DarklyyDebugbar $debugbar
      */
-    public function __construct(Container $container, LaravelDebugbar $debugbar)
+    public function __construct(Container $container, DarklyyDebugbar $debugbar)
     {
         $this->container = $container;
         $this->debugbar = $debugbar;

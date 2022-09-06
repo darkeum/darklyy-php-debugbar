@@ -13,7 +13,7 @@ use Twig_SimpleFunction;
 class Debug extends Extension
 {
     /**
-     * @var \Darkeum\Debugbar\LaravelDebugbar
+     * @var \Darkeum\Debugbar\DarklyyDebugbar
      */
     protected $debugbar;
 

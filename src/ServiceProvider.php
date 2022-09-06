@@ -1,23 +1,31 @@
 <?php
 
+/*
+* @name        DARKLYY PHP Debug Bar
+* @link        https://darklyy.ru/
+* @copyright   Copyright (C) 2012-2022 ООО «ПРИС»
+* @license     LICENSE.txt (see attached file)
+* @version     VERSION.txt (see attached file)
+* @author      Komarov Ivan
+*/
+
 namespace Darkeum\Debugbar;
 
-use Darkeum\Debugbar\Middleware\DebugbarEnabled;
-use Darkeum\Debugbar\Middleware\InjectDebugbar;
+use Boot\App\Application;
+use Boot\System\Routing\Router;
+use Boot\Support\Collection;
+use Boot\Contracts\Http\Kernel;
+use Boot\System\Session\SessionManager;
 use DebugBar\DataFormatter\DataFormatter;
-use DebugBar\DataFormatter\DataFormatterInterface;
-use Illuminate\Contracts\Http\Kernel;
-use Illuminate\Foundation\Application;
-use Illuminate\Routing\Router;
-use Illuminate\Session\SessionManager;
-use Illuminate\Support\Collection;
 use Illuminate\View\Engines\EngineResolver;
-use Darkeum\Debugbar\Facade as DebugBar;
+use Darkeum\Debugbar\Middleware\InjectDebugbar;
+use DebugBar\DataFormatter\DataFormatterInterface;
+use Boot\Support\ServiceProvider as ServiceProviderBase;
 
-class ServiceProvider extends \Illuminate\Support\ServiceProvider
+class ServiceProvider extends ServiceProviderBase
 {
     /**
-     * Register the service provider.
+     * Регистрация сервис провайдера
      *
      * @return void
      */
@@ -31,8 +39,8 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
             DataFormatterInterface::class
         );
 
-        $this->app->singleton(LaravelDebugbar::class, function ($app) {
-            $debugbar = new LaravelDebugbar($app);
+        $this->app->singleton(DarklyyDebugbar::class, function ($app) {
+            $debugbar = new DarklyyDebugbar($app);
 
             if ($app->bound(SessionManager::class)) {
                 $sessionManager = $app->make(SessionManager::class);
@@ -43,7 +51,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
             return $debugbar;
         });
 
-        $this->app->alias(LaravelDebugbar::class, 'debugbar');
+        $this->app->alias(DarklyyDebugbar::class, 'debugbar');
 
         $this->app->singleton(
             'command.debugbar.clear',
@@ -55,33 +63,32 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->app->extend(
             'view.engine.resolver',
             function (EngineResolver $resolver, Application $application): EngineResolver {
-                $laravelDebugbar = $application->make(LaravelDebugbar::class);
+                $DarklyyDebugbar = $application->make(DarklyyDebugbar::class);
 
-                $shouldTrackViewTime = $laravelDebugbar->isEnabled() &&
-                    $laravelDebugbar->shouldCollect('time', true) &&
-                    $laravelDebugbar->shouldCollect('views', true) &&
+                $shouldTrackViewTime = $DarklyyDebugbar->isEnabled() &&
+                    $DarklyyDebugbar->shouldCollect('time', true) &&
+                    $DarklyyDebugbar->shouldCollect('views', true) &&
                     $application['config']->get('debugbar.options.views.timeline', false);
 
                 if (! $shouldTrackViewTime) {
-                    /* Do not swap the engine to save performance */
                     return $resolver;
                 }
 
-                return new class ($resolver, $laravelDebugbar) extends EngineResolver {
-                    private $laravelDebugbar;
+                return new class ($resolver, $DarklyyDebugbar) extends EngineResolver {
+                    private $DarklyyDebugbar;
 
-                    public function __construct(EngineResolver $resolver, LaravelDebugbar $laravelDebugbar)
+                    public function __construct(EngineResolver $resolver, DarklyyDebugbar $DarklyyDebugbar)
                     {
                         foreach ($resolver->resolvers as $engine => $resolver) {
                             $this->register($engine, $resolver);
                         }
-                        $this->laravelDebugbar = $laravelDebugbar;
+                        $this->DarklyyDebugbar = $DarklyyDebugbar;
                     }
 
                     public function register($engine, \Closure $resolver)
                     {
                         parent::register($engine, function () use ($resolver) {
-                            return new DebugbarViewEngine($resolver(), $this->laravelDebugbar);
+                            return new DebugbarViewEngine($resolver(), $this->DarklyyDebugbar);
                         });
                     }
                 };
@@ -92,6 +99,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
             debug($this);
             return $this;
         });
+      
     }
 
     /**
@@ -114,7 +122,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     }
 
     /**
-     * Get the active router.
+     * Получить маршруты
      *
      * @return Router
      */
@@ -124,7 +132,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     }
 
     /**
-     * Get the config path
+     * Получить путь до конфигарции
      *
      * @return string
      */
@@ -134,7 +142,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     }
 
     /**
-     * Publish the config file
+     * Публикация файла конфигурации
      *
      * @param  string $configPath
      */
@@ -144,7 +152,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     }
 
     /**
-     * Register the Debugbar Middleware
+     * Регситрация Middleware
      *
      * @param  string $middleware
      */

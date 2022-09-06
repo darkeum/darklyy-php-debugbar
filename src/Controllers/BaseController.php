@@ -2,7 +2,7 @@
 
 namespace Darkeum\Debugbar\Controllers;
 
-use Darkeum\Debugbar\LaravelDebugbar;
+use Darkeum\Debugbar\DarklyyDebugbar;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 use Laravel\Telescope\Telescope;
@@ -14,7 +14,7 @@ if (class_exists('Illuminate\Routing\Controller')) {
     {
         protected $debugbar;
 
-        public function __construct(Request $request, LaravelDebugbar $debugbar)
+        public function __construct(Request $request, DarklyyDebugbar $debugbar)
         {
             $this->debugbar = $debugbar;
 
@@ -37,7 +37,7 @@ if (class_exists('Illuminate\Routing\Controller')) {
     {
         protected $debugbar;
 
-        public function __construct(Request $request, LaravelDebugbar $debugbar)
+        public function __construct(Request $request, DarklyyDebugbar $debugbar)
         {
             $this->debugbar = $debugbar;
 

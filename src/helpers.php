@@ -4,11 +4,11 @@ if (!function_exists('debugbar')) {
     /**
      * Get the Debugbar instance
      *
-     * @return \Darkeum\Debugbar\LaravelDebugbar
+     * @return \Darkeum\Debugbar\DarklyyDebugbar
      */
     function debugbar()
     {
-        return app(\Darkeum\Debugbar\LaravelDebugbar::class);
+        return app(\Darkeum\Debugbar\DarklyyDebugbar::class);
     }
 }
 

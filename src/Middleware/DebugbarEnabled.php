@@ -3,24 +3,24 @@
 namespace Darkeum\Debugbar\Middleware;
 
 use Closure;
-use Illuminate\Http\Request;
-use Darkeum\Debugbar\LaravelDebugbar;
+use Boot\System\Http\Request;
+use Darkeum\Debugbar\DarklyyDebugbar;
 
 class DebugbarEnabled
 {
     /**
      * The DebugBar instance
      *
-     * @var LaravelDebugbar
+     * @var DarklyyDebugbar
      */
     protected $debugbar;
 
     /**
      * Create a new middleware instance.
      *
-     * @param  LaravelDebugbar $debugbar
+     * @param  DarklyyDebugbar $debugbar
      */
-    public function __construct(LaravelDebugbar $debugbar)
+    public function __construct(DarklyyDebugbar $debugbar)
     {
         $this->debugbar = $debugbar;
     }

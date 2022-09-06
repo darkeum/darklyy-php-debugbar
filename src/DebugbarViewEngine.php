@@ -14,18 +14,18 @@ class DebugbarViewEngine implements Engine
     protected $engine;
 
     /**
-     * @var LaravelDebugbar
+     * @var DarklyyDebugbar
      */
-    protected $laravelDebugbar;
+    protected $DarklyyDebugbar;
 
     /**
      * @param  Engine  $engine
-     * @param  LaravelDebugbar  $laravelDebugbar
+     * @param  DarklyyDebugbar  $DarklyyDebugbar
      */
-    public function __construct(Engine $engine, LaravelDebugbar $laravelDebugbar)
+    public function __construct(Engine $engine, DarklyyDebugbar $DarklyyDebugbar)
     {
         $this->engine = $engine;
-        $this->laravelDebugbar = $laravelDebugbar;
+        $this->DarklyyDebugbar = $DarklyyDebugbar;
     }
 
     /**
@@ -37,7 +37,7 @@ class DebugbarViewEngine implements Engine
     {
         $shortPath = ltrim(str_replace(base_path(), '', realpath($path)), '/');
 
-        return $this->laravelDebugbar->measure($shortPath, function () use ($path, $data) {
+        return $this->DarklyyDebugbar->measure($shortPath, function () use ($path, $data) {
             return $this->engine->get($path, $data);
         });
     }

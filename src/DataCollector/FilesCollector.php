@@ -2,20 +2,18 @@
 
 namespace Darkeum\Debugbar\DataCollector;
 
+use Boot\Contracts\App\Application;
 use DebugBar\DataCollector\DataCollector;
 use DebugBar\DataCollector\Renderable;
-use Illuminate\Container\Container;
 
 class FilesCollector extends DataCollector implements Renderable
 {
-    /** @var \Illuminate\Container\Container */
+
     protected $app;
     protected $basePath;
 
-    /**
-     * @param \Illuminate\Container\Container $app
-     */
-    public function __construct(Container $app = null)
+
+    public function __construct(Application $app = null)
     {
         $this->app = $app;
         $this->basePath = base_path();

@@ -7,11 +7,11 @@ use DebugBar\DataCollector\DataCollectorInterface;
 use DebugBar\DataCollector\Renderable;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
+use Boot\System\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
-use Livewire\Livewire;
+use Boot\System\Livewire\Livewire;
 
 /**
  * Collector for Models.

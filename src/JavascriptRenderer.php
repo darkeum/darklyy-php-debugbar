@@ -1,17 +1,21 @@
 <?php
 
+/*
+* @name        DARKLYY PHP Debug Bar
+* @link        https://darklyy.ru/
+* @copyright   Copyright (C) 2012-2022 ООО «ПРИС»
+* @license     LICENSE.txt (see attached file)
+* @version     VERSION.txt (see attached file)
+* @author      Komarov Ivan
+*/
+
 namespace Darkeum\Debugbar;
 
 use DebugBar\DebugBar;
 use DebugBar\JavascriptRenderer as BaseJavascriptRenderer;
-use Illuminate\Routing\UrlGenerator;
 
-/**
- * {@inheritdoc}
- */
 class JavascriptRenderer extends BaseJavascriptRenderer
-{
-    // Use XHR handler by default, instead of jQuery
+{   
     protected $ajaxHandlerBindToJquery = false;
     protected $ajaxHandlerBindToXHR = true;
 
@@ -19,36 +23,33 @@ class JavascriptRenderer extends BaseJavascriptRenderer
     {
         parent::__construct($debugBar, $baseUrl, $basePath);
 
-        $this->cssFiles['laravel'] = __DIR__ . '/Resources/laravel-debugbar.css';
+        $this->cssFiles['darklyy'] = __DIR__ . '/Resources/darklyy-debugbar.css';
         $this->cssVendors['fontawesome'] = __DIR__ . '/Resources/vendor/font-awesome/style.css';
-        $this->jsFiles['laravel-sql'] = __DIR__ . '/Resources/sqlqueries/widget.js';
-        $this->jsFiles['laravel-cache'] = __DIR__ . '/Resources/cache/widget.js';
+        $this->jsFiles['darklyy-sql'] = __DIR__ . '/Resources/sqlqueries/widget.js';
+        $this->jsFiles['darklyy-cache'] = __DIR__ . '/Resources/cache/widget.js';
 
         $theme = config('debugbar.theme', 'auto');
         switch ($theme) {
             case 'dark':
-                $this->cssFiles['laravel-dark'] = __DIR__ . '/Resources/laravel-debugbar-dark-mode.css';
+                $this->cssFiles['darklyy-dark'] = __DIR__ . '/Resources/darklyy-debugbar-dark-mode.css';
                 break;
             case 'auto':
-                $this->cssFiles['laravel-dark-0'] = __DIR__ . '/Resources/laravel-debugbar-dark-mode-media-start.css';
-                $this->cssFiles['laravel-dark-1'] = __DIR__ . '/Resources/laravel-debugbar-dark-mode.css';
-                $this->cssFiles['laravel-dark-2'] = __DIR__ . '/Resources/laravel-debugbar-dark-mode-media-end.css';
+                $this->cssFiles['darklyy-dark-0'] = __DIR__ . '/Resources/darklyy-debugbar-dark-mode-media-start.css';
+                $this->cssFiles['darklyy-dark-1'] = __DIR__ . '/Resources/darklyy-debugbar-dark-mode.css';
+                $this->cssFiles['darklyy-dark-2'] = __DIR__ . '/Resources/darklyy-debugbar-dark-mode-media-end.css';
         }
     }
 
     /**
      * Set the URL Generator
      *
-     * @param \Illuminate\Routing\UrlGenerator $url
+     * @param \Boot\System\Routing\UrlGenerator $url
      * @deprecated
      */
     public function setUrlGenerator($url)
     {
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function renderHead()
     {
         $cssRoute = route('debugbar.assets.css', [
