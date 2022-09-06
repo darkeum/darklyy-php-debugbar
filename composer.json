@@ -1,11 +1,18 @@
 {
-    "name": "Darkeum/laravel-debugbar",
-    "description": "PHP Debugbar integration for Laravel",
-    "keywords": ["laravel", "debugbar", "profiler", "debug", "webprofiler"],
+    "name": "darkeum/darklyy-php-debugbar",
+    "description": "Отладочный бар для Darklyy",
+    "keywords": [
+        "darkeum",
+        "darklyy",
+        "darklyy-php-debugbar"
+    ],
+    "homepage": "https://github.com/darkeum/darklyy-php-debugbar",
     "license": "MIT",
     "authors": [{
-        "name": "Barry vd. Heuvel",
-        "email": "Darkeum@gmail.com"
+        "name": "Komarov Ivan",
+        "email": "ki@darkeum.ru",
+        "homepage": "https://darkeum.ru",
+        "role": "Developer"
     }],
     "require": {
         "php": ">=7.2.5",
@@ -29,7 +36,7 @@
         "branch-alias": {
             "dev-master": "3.6-dev"
         },
-        "laravel": {
+        "darklyy": {
             "providers": [
                 "Darkeum\\Debugbar\\ServiceProvider"
             ],
