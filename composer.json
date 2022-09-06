@@ -1,0 +1,41 @@
+{
+    "name": "Darkeum/laravel-debugbar",
+    "description": "PHP Debugbar integration for Laravel",
+    "keywords": ["laravel", "debugbar", "profiler", "debug", "webprofiler"],
+    "license": "MIT",
+    "authors": [{
+        "name": "Barry vd. Heuvel",
+        "email": "Darkeum@gmail.com"
+    }],
+    "require": {
+        "php": ">=7.2.5",
+        "maximebf/debugbar": "^1.17.2",
+        "illuminate/routing": "^7|^8|^9",
+        "illuminate/session": "^7|^8|^9",
+        "illuminate/support": "^7|^8|^9",
+        "symfony/finder": "^5|^6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Darkeum\\Debugbar\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "branch-alias": {
+            "dev-master": "3.6-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Darkeum\\Debugbar\\ServiceProvider"
+            ],
+            "aliases": {
+                "Darkeum": "Darkeum\\Debugbar\\Facades\\Debugbar"
+            }
+        }
+    }
+}
