@@ -1,5 +1,14 @@
 <?php
 
+/*
+* @name        DARKLYY
+* @link        https://darklyy.ru/
+* @copyright   Copyright (C) 2012-2024 ООО «ПРИС»
+* @license     LICENSE.txt (see attached file)
+* @version     VERSION.txt (see attached file)
+* @author      Komarov Ivan
+*/
+
 namespace Darkeum\Debugbar\Console;
 
 use DebugBar\DebugBar;
@@ -8,7 +17,7 @@ use Boot\System\Console\Command;
 class ClearCommand extends Command
 {
     protected $name = 'debugbar:clear';
-    protected $description = 'Clear the Debugbar Storage';
+    protected $description = 'Очистка хранилища Debugbar';
     protected $debugbar;
 
     public function __construct(DebugBar $debugbar)
@@ -31,9 +40,9 @@ class ClearCommand extends Command
                     throw $e;
                 }
             }
-            $this->info('Debugbar Storage cleared!');
+            $this->info('Хранилище Debugbar успешно очищено!');
         } else {
-            $this->error('No Debugbar Storage found..');
+            $this->error('Хранилище Debugbar не найдено..');
         }
     }
 }

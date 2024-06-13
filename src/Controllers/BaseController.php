@@ -1,10 +1,19 @@
 <?php
 
+/*
+* @name        DARKLYY
+* @link        https://darklyy.ru/
+* @copyright   Copyright (C) 2012-2024 ООО «ПРИС»
+* @license     LICENSE.txt (see attached file)
+* @version     VERSION.txt (see attached file)
+* @author      Komarov Ivan
+*/
+
 namespace Darkeum\Debugbar\Controllers;
 
 use Darkeum\Debugbar\DarklyyDebugbar;
 use Illuminate\Routing\Controller;
-use Illuminate\Http\Request;
+use Boot\System\Http\Request;
 use Laravel\Telescope\Telescope;
 
 // phpcs:ignoreFile

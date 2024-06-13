@@ -1,8 +1,15 @@
 <?php
 
-namespace Darkeum\Debugbar\Controllers;
+/*
+* @name        DARKLYY
+* @link        https://darklyy.ru/
+* @copyright   Copyright (C) 2012-2024 ООО «ПРИС»
+* @license     LICENSE.txt (see attached file)
+* @version     VERSION.txt (see attached file)
+* @author      Komarov Ivan
+*/
 
-use Illuminate\Http\Response;
+namespace Darkeum\Debugbar\Controllers;
 
 class CacheController extends BaseController
 {

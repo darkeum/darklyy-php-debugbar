@@ -1,11 +1,20 @@
 <?php
 
+/*
+* @name        DARKLYY
+* @link        https://darklyy.ru/
+* @copyright   Copyright (C) 2012-2024 ООО «ПРИС»
+* @license     LICENSE.txt (see attached file)
+* @version     VERSION.txt (see attached file)
+* @author      Komarov Ivan
+*/
+
 namespace Darkeum\Debugbar\Controllers;
 
 use Darkeum\Debugbar\Support\Clockwork\Converter;
 use DebugBar\OpenHandler;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Boot\System\Http\Request;
+use Boot\System\Http\Response;
 
 class OpenHandlerController extends BaseController
 {
